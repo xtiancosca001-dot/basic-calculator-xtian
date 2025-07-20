@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: Montserrat, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    width: 100%;
+    margin: 1.25em 0;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    font-family: 'Roboto Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    border:5px solid black;
+}
+
+.display {
+    display: flex;
+    width: 100%;
+}
+.display input{
+    flex: 1;
+    height: 100px;
+    padding: 10px 20px;
+    overflow: none;
+    text-align: right;
+    font-family: "Roboto Mono", monospace;
+    font-size: 2em;
+    width: 100%;
+    cursor: default;
+    border: none;
+}
+
+.display input:focus {
+    border: none;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    width: 100%;
+    border-top: 5px solid black;
+}
+
+.row {
+    display: flex;
+    justify-items: center;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    user-select: none;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    font-size: 1.5em;
+    flex: 1;
+}
+
+.button:hover {
+    background-color: beige;
+}
+
+.footer {
+    width: 100%;
+    margin: 1.25em;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 1.25em;
+}
+
