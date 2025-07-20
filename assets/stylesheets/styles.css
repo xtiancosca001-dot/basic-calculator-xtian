@@ -16,6 +16,11 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: url('../images/math-background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -53,14 +58,15 @@ h1 {
     overflow: none;
     text-align: right;
     font-family: "Roboto Mono", monospace;
-    font-size: 2em;
+    font-size: 1.75em;
     width: 100%;
     cursor: default;
     border: none;
+    background: none;
 }
 
-.display input:focus {
-    border: none;
+.display input:focus-visible {
+    outline: none;
 }
 
 .controls {
