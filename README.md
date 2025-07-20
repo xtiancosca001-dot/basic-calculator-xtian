@@ -11,3 +11,6 @@ square roots, and trigonometric functions.
 - This is an application to all the fundamentals of
 HTML, CSS and Javascript, especially Forms, Flexbox, 
 DOM Manipulation, Control Statements, Arrays, and Objects. 
+
+# CREDITS
+- Background owned by rawpixel.com [rawpixel.com](https://www.freepik.com/free-vector/mathematical-geometric-background-vector-gradient-blue-education-remix_16311889.htm#fromView=search&page=1&position=1&uuid=9853d36d-11ee-460d-85a9-de5697fa41e9&query=%40rawpixel-com+math)
