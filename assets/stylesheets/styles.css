@@ -8,6 +8,7 @@
 
 html {
     font-family: Montserrat, sans-serif;
+    color: white;
 }
 
 body {
@@ -25,12 +26,14 @@ body {
 
 h1 {
     width: 100%;
-    margin: 1.25em 0;
+    font-size: 1.75em;
+    padding: 0.75em 0;
     text-align: center;
+    background-color:rgba(0, 0, 0, 0.411);
+    backdrop-filter: blur(10px);
 }
 
 .container {
-    width: 100%;
     flex: 1;
     display: flex;
     justify-content: center;
@@ -43,8 +46,10 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 400px;
-    border:5px solid black;
+    width: 350px;
+    border:5px solid white;
+    background-color:rgba(0, 0, 0, 0.411);
+    backdrop-filter: blur(10px);
 }
 
 .display {
@@ -63,6 +68,7 @@ h1 {
     cursor: default;
     border: none;
     background: none;
+    color: rgb(255, 255, 255);
 }
 
 .display input:focus-visible {
@@ -75,7 +81,7 @@ h1 {
     align-items: stretch;
     flex: 1;
     width: 100%;
-    border-top: 5px solid black;
+    border-top: 5px solid white;
 }
 
 .row {
@@ -87,7 +93,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid white;
     user-select: none;
     cursor: pointer;
     aspect-ratio: 1/1;
@@ -101,8 +107,11 @@ h1 {
 
 .footer {
     width: 100%;
-    margin: 1.25em;
+    padding: 1.25em;
     text-align: center;
+    color: white;
+    background-color:rgba(0, 0, 0, 0.411);
+    backdrop-filter: blur(10px);
 }
 
 .footer p {
