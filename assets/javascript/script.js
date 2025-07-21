@@ -1,4 +1,5 @@
 // Variables for UI
+const NUMBERS = "1234567890";
 let operator, operand1, operand2;
 
 function add(num1, num2) {
@@ -33,3 +34,17 @@ function operate(operator, num1, num2) {
             return divide(num1, num2);
     }
 }
+
+const display = document.querySelector('input#display');
+const controls = document.querySelector('.controls');
+controls.addEventListener('click', e => {
+    if(NUMBERS.includes(e.target.textContent)) {
+        display.value += e.target.textContent;
+    }
+    if(e.target.textContent==='C') {
+        display.value = '';
+    }
+    if(e.target.textContent==='=') {
+        display.value = 'GOTCHA!';
+    }
+});
