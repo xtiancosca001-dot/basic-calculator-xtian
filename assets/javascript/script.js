@@ -1,3 +1,6 @@
+// Variables for UI
+let operator, operand1, operand2;
+
 function add(num1, num2) {
     return num1 + num2;
 }
