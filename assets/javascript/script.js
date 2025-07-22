@@ -37,12 +37,18 @@ function operate(operator, num1, num2) {
 
 const display = document.querySelector('input#display');
 const controls = document.querySelector('.controls');
+display.value = '0';
+
 controls.addEventListener('click', e => {
     if(NUMBERS.includes(e.target.textContent)) {
-        display.value += e.target.textContent;
+        if(display.value === '0') {
+            display.value = e.target.textContent;
+        } else {
+            display.value += e.target.textContent;
+        }   
     }
     if(e.target.textContent==='C') {
-        display.value = '';
+        display.value = '0';
     }
     if(e.target.textContent==='=') {
         display.value = 'GOTCHA!';
