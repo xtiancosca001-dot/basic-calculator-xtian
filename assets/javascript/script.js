@@ -69,4 +69,34 @@ function handleButtonPress(e) {
     }
 }
 
+function handleKeyDown(e) {
+    if(NUMBERS.includes(e.key)) {
+        if(display.value === '0') {
+            display.value = e.key;
+        } else {
+            display.value += e.key;
+        }   
+    }
+    if(e.key==='c') {
+        display.value = '0';
+    }
+    if(e.key==='=') {
+        display.value = 'GOTCHA!';
+    }
+    if(e.key==='Backspace') {
+        display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
+    }
+    if(e.key==='n') {
+        if(!display.value.includes('-')) {
+            display.value = '-' + display.value;
+        } else {
+            display.value = display.value.slice(1);
+        }
+    }
+    if(e.key==='.' && !display.value.includes('.')) {
+        display.value += '.';
+    }
+}
+
 controls.addEventListener('click', handleButtonPress);
+document.addEventListener('keydown', handleKeyDown);
