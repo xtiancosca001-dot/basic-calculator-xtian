@@ -36,10 +36,11 @@ function operate(operator, num1, num2) {
 }
 
 const display = document.querySelector('input#display');
+const clear = document.querySelector('#clear');
 const controls = document.querySelector('.controls');
 display.value = '0';
 
-controls.addEventListener('click', e => {
+function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
         if(display.value === '0') {
             display.value = e.target.textContent;
@@ -66,4 +67,6 @@ controls.addEventListener('click', e => {
     if(e.target.textContent==='.' && !display.value.includes('.')) {
         display.value += '.';
     }
-});
+}
+
+controls.addEventListener('click', handleButtonPress);
