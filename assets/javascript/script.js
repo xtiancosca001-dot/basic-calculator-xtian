@@ -48,7 +48,7 @@ controls.addEventListener('click', e => {
         display.value = 'GOTCHA!';
     }
     if(e.target.textContent==='←') {
-        display.value = display.value.slice(0,-1);
+        display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
     }
     if(e.target.textContent==='+/-') {
         if(!display.value.includes('-')) {
