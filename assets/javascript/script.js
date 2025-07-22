@@ -63,4 +63,7 @@ controls.addEventListener('click', e => {
             display.value = display.value.slice(1);
         }
     }
+    if(e.target.textContent==='.' && !display.value.includes('.')) {
+        display.value += '.';
+    }
 });
