@@ -50,4 +50,11 @@ controls.addEventListener('click', e => {
     if(e.target.textContent==='←') {
         display.value = display.value.slice(0,-1);
     }
+    if(e.target.textContent==='+/-') {
+        if(!display.value.includes('-')) {
+            display.value = '-' + display.value;
+        } else {
+            display.value = display.value.slice(1);
+        }
+    }
 });
