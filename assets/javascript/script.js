@@ -47,4 +47,7 @@ controls.addEventListener('click', e => {
     if(e.target.textContent==='=') {
         display.value = 'GOTCHA!';
     }
+    if(e.target.textContent==='←') {
+        display.value = display.value.slice(0,-1);
+    }
 });
