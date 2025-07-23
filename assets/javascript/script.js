@@ -1,5 +1,6 @@
 // Variables for UI
 const NUMBERS = "1234567890";
+const OPERATORS = "+-x÷"
 let operator, operand1, operand2;
 
 function add(num1, num2) {
@@ -39,20 +40,30 @@ const display = document.querySelector('input#display');
 const clear = document.querySelector('#clear');
 const controls = document.querySelector('.controls');
 display.value = '0';
+let accumulator = 0;
+let operatorIsPressed;
 
 function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
-        if(display.value === '0') {
+        console.log(operatorIsPressed, " TEST")
+        if(display.value === '0' || operatorIsPressed) {
             display.value = e.target.textContent;
-        } else {
+            operatorIsPressed = false;
+        } else if(!operatorIsPressed) {
             display.value += e.target.textContent;
         }   
+    }
+    if(OPERATORS.includes(e.target.textContent)) {
+        operatorIsPressed = true;
+        operator = e.target.textContent;
+        operand1 = display.value;
     }
     if(e.target.textContent==='C') {
         display.value = '0';
     }
     if(e.target.textContent==='=') {
-        display.value = 'GOTCHA!';
+        operand2 = display.value;
+        display.value = 'ALMOST THERE!';
     }
     if(e.target.textContent==='←') {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
