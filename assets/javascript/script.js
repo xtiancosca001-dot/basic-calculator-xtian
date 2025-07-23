@@ -41,11 +41,10 @@ const clear = document.querySelector('#clear');
 const controls = document.querySelector('.controls');
 display.value = '0';
 let accumulator = 0;
-let operatorIsPressed;
+let operatorIsPressed = false;
 
 function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
-        console.log(operatorIsPressed, " TEST")
         if(display.value === '0' || operatorIsPressed) {
             display.value = e.target.textContent;
             operatorIsPressed = false;
