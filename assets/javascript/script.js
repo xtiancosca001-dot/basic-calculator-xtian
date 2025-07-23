@@ -81,16 +81,22 @@ function handleButtonPress(e) {
 
 function handleKeyDown(e) {
     if(NUMBERS.includes(e.key)) {
-        if(display.value === '0') {
+        if(display.value === '0' || operatorIsPressed) {
             display.value = e.key;
-        } else {
+            operatorIsPressed = false;
+        } else if(!operatorIsPressed) {
             display.value += e.key;
-        }   
+        }    
+    }
+    if(OPERATORS.includes(e.key)) {
+        operatorIsPressed = true;
+        operator = (e.key === '/') ? "÷" : e.key;    
+        operand1 = display.value;
     }
     if(e.key==='c') {
         display.value = '0';
     }
-    if(e.key==='=') {
+    if(e.key === 'Enter' || e.key === '=') {
         display.value = 'GOTCHA!';
     }
     if(e.key==='Backspace') {
