@@ -48,28 +48,33 @@ console.log(monitor);
 function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
         if(display.value === '0' || operatorIsPressed) {
-            display.value = e.target.textContent;
+            display.value = monitor.currOperand = e.target.textContent;
             operatorIsPressed = false;
         } else if(!operatorIsPressed) {
             display.value += e.target.textContent;
+            monitor.currOperand += e.target.textContent;
         }   
+        console.log(`NUMBER IS PRESSED`, monitor);
     }
     if(OPERATORS.includes(e.target.textContent)) {
         operatorIsPressed = true;
         operator = e.target.textContent;
         monitor.currOperator = operator;
-        monitor.currOperand = display.value;
+        monitor.prevOperand = display.value;
         console.log(`OPERATOR IS PRESSED: `, monitor);
-        [monitor.prevOperand,monitor.prevOperator]  = [monitor.currOperand,monitor.currOperator];
+        monitor.prevOperator  = monitor.currOperator;
         // TODO: Figure out when to trigger an operation even if an operation is pressed after two numbers
     }
 
     if(e.target.textContent==='=') {
-        monitor.prevOperator = monitor.currOperator;
-        monitor.prevOperand = monitor.currOperand;
-        monitor.currOperand = display.value;
+        if(!monitor.prevOperand) {
+            console.log('SPED AUTISTIC')
+            monitor.currOperand = display.value;
+            monitor.prevOperand = monitor.currOperand;
+        };
         console.log(`EQUAL IS PRESSED`, monitor);
-        display.value = monitor.prevOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        monitor.prevOperand = display.value;
         console.log(`AFTER OPERATION`, monitor);
     }
     if(e.target.textContent==='C') {
@@ -82,12 +87,15 @@ function handleButtonPress(e) {
     if(e.target.textContent==='+/-') {
         if(!display.value.includes('-')) {
             display.value = '-' + display.value;
+            monitor.currOperand = display.value;
         } else {
             display.value = display.value.slice(1);
+            monitor.currOperand = display.value;
         }
     }
     if(e.target.textContent==='.' && !display.value.includes('.')) {
         display.value += '.';
+        monitor.currOperand = display.value;
     }
 }
 
