@@ -39,6 +39,7 @@ function operate(operator, num1, num2) {
 const display = document.querySelector('input#display');
 const clear = document.querySelector('#clear');
 const controls = document.querySelector('.controls');
+let monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
 display.value = '0';
 let accumulator = 0;
 let operatorIsPressed = false;
@@ -55,14 +56,21 @@ function handleButtonPress(e) {
     if(OPERATORS.includes(e.target.textContent)) {
         operatorIsPressed = true;
         operator = e.target.textContent;
-        operand1 = display.value;
-    }
-    if(e.target.textContent==='C') {
-        display.value = '0';
+        monitor.currOperator = operator;
+        monitor.currOperand = display.value;
+        console.log(`OPERATOR IS PRESSED: `, monitor);
     }
     if(e.target.textContent==='=') {
-        operand2 = display.value;
-        display.value = 'ALMOST THERE!';
+        monitor.prevOperator = monitor.currOperator;
+        monitor.prevOperand = monitor.currOperand;
+        monitor.currOperand = display.value;
+        console.log(`EQUAL IS PRESSED`, monitor);
+        display.value = monitor.prevOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        console.log(`AFTER OPERATION`, monitor);
+    }
+    if(e.target.textContent==='C') {
+        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+        display.value = '0';
     }
     if(e.target.textContent==='←') {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
