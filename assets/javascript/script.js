@@ -1,6 +1,6 @@
 // Variables for UI
 const NUMBERS = "1234567890";
-const OPERATORS = "+-x÷"
+const OPERATORS = "+-x/"
 let operator, operand1, operand2;
 
 function add(num1, num2) {
@@ -69,7 +69,7 @@ function handleButtonPress(e) {
         console.log(`AFTER OPERATION`, monitor);
     }
     if(e.target.textContent==='C') {
-        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:'', accumulator: 0};
         display.value = '0';
     }
     if(e.target.textContent==='←') {
