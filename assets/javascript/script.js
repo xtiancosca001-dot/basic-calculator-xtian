@@ -39,11 +39,12 @@ function operate(operator, num1, num2) {
 const display = document.querySelector('input#display');
 const clear = document.querySelector('#clear');
 const controls = document.querySelector('.controls');
-let monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+let monitor = {prevOperand:undefined, currOperand:undefined, prevOperator:undefined, currOperator:undefined};
 display.value = '0';
 let accumulator = 0;
 let operatorIsPressed = false;
-
+let isOperated = false;
+console.log(monitor);
 function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
         if(display.value === '0' || operatorIsPressed) {
@@ -59,7 +60,10 @@ function handleButtonPress(e) {
         monitor.currOperator = operator;
         monitor.currOperand = display.value;
         console.log(`OPERATOR IS PRESSED: `, monitor);
+        [monitor.prevOperand,monitor.prevOperator]  = [monitor.currOperand,monitor.currOperator];
+        // TODO: Figure out when to trigger an operation even if an operation is pressed after two numbers
     }
+
     if(e.target.textContent==='=') {
         monitor.prevOperator = monitor.currOperator;
         monitor.prevOperand = monitor.currOperand;
