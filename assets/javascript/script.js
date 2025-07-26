@@ -41,7 +41,6 @@ const clear = document.querySelector('#clear');
 const controls = document.querySelector('.controls');
 let monitor = {prevOperand:undefined, currOperand:undefined, prevOperator:undefined, currOperator:undefined};
 display.value = '0';
-let accumulator = 0;
 let operatorIsPressed = false;
 let isOperated = false;
 console.log(monitor);
@@ -67,18 +66,13 @@ function handleButtonPress(e) {
     }
 
     if(e.target.textContent==='=') {
-        if(!monitor.prevOperand) {
-            console.log('SPED AUTISTIC')
-            monitor.currOperand = display.value;
-            monitor.prevOperand = monitor.currOperand;
-        };
         console.log(`EQUAL IS PRESSED`, monitor);
         display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
         console.log(`AFTER OPERATION`, monitor);
     }
     if(e.target.textContent==='C') {
-        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:'', accumulator: 0};
+        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
         display.value = '0';
     }
     if(e.target.textContent==='←') {
