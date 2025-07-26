@@ -56,13 +56,16 @@ function handleButtonPress(e) {
         console.log(`NUMBER IS PRESSED`, monitor);
     }
     if(OPERATORS.includes(e.target.textContent)) {
+        if(monitor.prevOperator) {
+            display.value = monitor.currOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+            //monitor.prevOperand;
+            console.log(`test operate`, monitor)
+        }
         operatorIsPressed = true;
         operator = e.target.textContent;
         monitor.currOperator = operator;
-        monitor.prevOperand = display.value;
-        console.log(`OPERATOR IS PRESSED: `, monitor);
         monitor.prevOperator  = monitor.currOperator;
-        // TODO: Figure out when to trigger an operation even if an operation is pressed after two numbers
+        monitor.prevOperand = display.value;
     }
 
     if(e.target.textContent==='=') {
