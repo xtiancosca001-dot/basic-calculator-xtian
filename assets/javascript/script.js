@@ -45,6 +45,10 @@ let operatorIsPressed = false;
 let isOperated = false;
 console.log(monitor);
 function handleButtonPress(e) {
+    if(e.target.textContent === '𖹭') {
+        display.value = 'I Love Math <3';
+        isOperated = true;
+    }
     if(NUMBERS.includes(e.target.textContent)) {
         if(isOperated) {
             monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:''};
