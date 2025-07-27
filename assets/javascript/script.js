@@ -117,7 +117,7 @@ function handleKeyDown(e) {
         if(isOperated) {
             monitor.prevOperator = '';
         }
-        if(monitor.prevOperator && !operatorIsPressed) {
+        if(monitor.prevOperator && !operatorIsPressed && !isOperated) {
             display.value = monitor.currOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         }
         operatorIsPressed = true;
