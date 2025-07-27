@@ -1,6 +1,6 @@
 // Variables for UI
 const NUMBERS = "1234567890";
-const OPERATORS = "+-x/"
+const OPERATORS = "+-*/"
 let operator, operand1, operand2;
 
 function add(num1, num2) {
@@ -29,7 +29,7 @@ function operate(operator, num1, num2) {
             return add(num1, num2);
         case '-':
             return subtract(num1, num2);
-        case 'x':
+        case '*':
             return multiply(num1, num2);
         case '/':
             return divide(num1, num2);
