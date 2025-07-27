@@ -92,7 +92,7 @@ function handleButtonPress(e) {
     if(e.target.textContent==='←') {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
     }
-    if(e.target.textContent==='+/-') {
+    if(e.target.textContent==='+/-' && display.value !== '0') {
         if(!display.value.includes('-')) {
             display.value = '-' + display.value;
             monitor.currOperand = display.value;
@@ -147,7 +147,7 @@ function handleKeyDown(e) {
     if(e.key==='Backspace') {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
     }
-    if(e.key==='n') {
+    if(e.key==='n' && display.value !== '0') {
         if(!display.value.includes('-')) {
             display.value = '-' + display.value;
             monitor.currOperand = display.value;
