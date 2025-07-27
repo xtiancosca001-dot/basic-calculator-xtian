@@ -71,7 +71,9 @@ function handleButtonPress(e) {
     }
 
     if(e.target.textContent==='=') {
-        display.value = (!monitor.currOperator && !monitor.prevOperator) ? monitor.currOperand : (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        display.value = (!monitor.currOperator && !monitor.prevOperator) ? monitor.currOperand : 
+                        (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : 
+                        operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
         isOperated = true;
     }
@@ -125,7 +127,9 @@ function handleKeyDown(e) {
         isOperated = false;
     }
     if(e.key === 'Enter' || e.key === '=') {
-        display.value = (!monitor.currOperator && !monitor.prevOperator) ? monitor.currOperand : (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        display.value = (!monitor.currOperator && !monitor.prevOperator) ? monitor.currOperand : 
+                        (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : 
+                        operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
         isOperated = true;
     }
