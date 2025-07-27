@@ -1,7 +1,6 @@
 // Variables for UI
 const NUMBERS = "1234567890";
-const OPERATORS = "+-*/"
-let operator, operand1, operand2;
+const OPERATORS = "+-*/";
 
 function add(num1, num2) {
     return num1 + num2;
@@ -17,10 +16,6 @@ function multiply(num1, num2) {
 
 function divide(num1, num2) {
     return num1 / num2;
-}
-
-function percent(num) {
-    return num * 100;
 }
 
 function operate(operator, num1, num2) {
@@ -70,8 +65,7 @@ function handleButtonPress(e) {
             display.value = monitor.currOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         }
         operatorIsPressed = true;
-        operator = e.target.textContent;
-        monitor.currOperator = operator;
+        monitor.currOperator = e.target.textContent;
         monitor.prevOperator  = monitor.currOperator;
         monitor.prevOperand = display.value;
         isOperated = false;
@@ -128,8 +122,7 @@ function handleKeyDown(e) {
             display.value = monitor.currOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         }
         operatorIsPressed = true;
-        operator = e.key;    
-        monitor.currOperator = operator;
+        monitor.currOperator = e.key; 
         monitor.prevOperator  = monitor.currOperator;
         monitor.prevOperand = display.value;
         isOperated = false;
