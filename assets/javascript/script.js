@@ -46,21 +46,23 @@ let isOperated = false;
 console.log(monitor);
 function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
+        if(isOperated) {
+            monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+        }
         if(display.value === '0' || operatorIsPressed || isOperated) {
             display.value = monitor.currOperand = e.target.textContent;
-            operatorIsPressed = false;
-        } else if(!operatorIsPressed) {
+            operatorIsPressed = isOperated = false;
+        } else if(!operatorIsPressed || !isOperated) {
             display.value += e.target.textContent;
             monitor.currOperand += e.target.textContent;
         }   
         console.log(`NUMBER IS PRESSED`, monitor);
     }
     if(OPERATORS.includes(e.target.textContent)) {
-        // If equal sign is already pressed, remove the previous Operator to avoid operating even if it's not needed
         if(isOperated) {
             monitor.prevOperator = '';
         }
-        if(monitor.prevOperator && !operatorIsPressed) {
+        if(monitor.prevOperator && !operatorIsPressed && !isOperated) {
             display.value = monitor.currOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         }
         operatorIsPressed = true;
@@ -107,10 +109,13 @@ function handleButtonPress(e) {
 
 function handleKeyDown(e) {
     if(NUMBERS.includes(e.key)) {
-        if(display.value === '0' || operatorIsPressed) {
+        if(isOperated) {
+            monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+        }
+        if(display.value === '0' || operatorIsPressed || isOperated) {
             display.value = monitor.currOperand = e.key;
-            operatorIsPressed = false;
-        } else if(!operatorIsPressed) {
+            operatorIsPressed = isOperated = false;
+        } else if(!operatorIsPressed || !isOperated) {
             display.value += e.key;
             monitor.currOperand += e.key;
         }    
@@ -130,7 +135,7 @@ function handleKeyDown(e) {
         isOperated = false;
     }
     if(e.key === 'Enter' || e.key === '=') {
-        display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        display.value = (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
         isOperated = true;
     }
