@@ -56,10 +56,12 @@ function handleButtonPress(e) {
         console.log(`NUMBER IS PRESSED`, monitor);
     }
     if(OPERATORS.includes(e.target.textContent)) {
+        // If equal sign is already pressed, remove the previous Operator to avoid operating even if it's not needed
+        if(isOperated) {
+            monitor.prevOperator = '';
+        }
         if(monitor.prevOperator) {
             display.value = monitor.currOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
-            //monitor.prevOperand;
-            console.log(`test operate`, monitor)
         }
         operatorIsPressed = true;
         operator = e.target.textContent;
@@ -72,6 +74,7 @@ function handleButtonPress(e) {
         console.log(`EQUAL IS PRESSED`, monitor);
         display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
+        isOperated = true;
         console.log(`AFTER OPERATION`, monitor);
     }
     if(e.target.textContent==='C') {
