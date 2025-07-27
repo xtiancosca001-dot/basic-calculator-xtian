@@ -160,6 +160,10 @@ function handleKeyDown(e) {
         display.value += '.';
         monitor.currOperand = display.value;
     }
+    if(e.key==='l') {
+        display.value = 'I Love Math <3';
+        isOperated = true;
+    }
 }
 
 controls.addEventListener('click', handleButtonPress);
