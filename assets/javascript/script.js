@@ -68,6 +68,7 @@ function handleButtonPress(e) {
         monitor.currOperator = operator;
         monitor.prevOperator  = monitor.currOperator;
         monitor.prevOperand = display.value;
+        isOperated = false;
     }
 
     if(e.target.textContent==='=') {
@@ -80,6 +81,7 @@ function handleButtonPress(e) {
     if(e.target.textContent==='C') {
         monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
         display.value = '0';
+        isOperated = false;
     }
     if(e.target.textContent==='←') {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
