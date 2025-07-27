@@ -104,22 +104,36 @@ function handleButtonPress(e) {
 function handleKeyDown(e) {
     if(NUMBERS.includes(e.key)) {
         if(display.value === '0' || operatorIsPressed) {
-            display.value = e.key;
+            display.value = monitor.currOperand = e.key;
             operatorIsPressed = false;
         } else if(!operatorIsPressed) {
             display.value += e.key;
+            monitor.currOperand += e.key;
         }    
     }
     if(OPERATORS.includes(e.key)) {
+        if(isOperated) {
+            monitor.prevOperator = '';
+        }
+        if(monitor.prevOperator && !operatorIsPressed) {
+            display.value = monitor.currOperand = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        }
         operatorIsPressed = true;
-        operator = (e.key === '/') ? "÷" : e.key;    
-        operand1 = display.value;
-    }
-    if(e.key==='c') {
-        display.value = '0';
+        operator = e.key;    
+        monitor.currOperator = operator;
+        monitor.prevOperator  = monitor.currOperator;
+        monitor.prevOperand = display.value;
+        isOperated = false;
     }
     if(e.key === 'Enter' || e.key === '=') {
-        display.value = 'GOTCHA!';
+        display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        monitor.prevOperand = display.value;
+        isOperated = true;
+    }
+    if(e.key==='c') {
+        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+        display.value = '0';
+        isOperated = false;
     }
     if(e.key==='Backspace') {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
@@ -127,12 +141,15 @@ function handleKeyDown(e) {
     if(e.key==='n') {
         if(!display.value.includes('-')) {
             display.value = '-' + display.value;
+            monitor.currOperand = display.value;
         } else {
             display.value = display.value.slice(1);
+            monitor.currOperand = display.value;
         }
     }
     if(e.key==='.' && !display.value.includes('.')) {
         display.value += '.';
+        monitor.currOperand = display.value;
     }
 }
 
