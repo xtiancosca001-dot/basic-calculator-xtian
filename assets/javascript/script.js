@@ -75,15 +75,7 @@ function handleButtonPress(e) {
 
     if(e.target.textContent==='=') {
         console.log(`EQUAL IS PRESSED`, monitor);
-        if(!monitor.currOperator && !monitor.prevOperator) {
-            console.log('no operators yet', monitor.currOperand)
-            display.value = monitor.currOperand;
-        }
-        else if(monitor.currOperator === '/' && monitor.currOperand === '0') {
-            display.value = 'Cannot Divide By Zero!';
-        } else {
-            display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
-        }
+        display.value = (!monitor.currOperator && !monitor.prevOperator) ? monitor.currOperand : (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
         isOperated = true;
         console.log(`AFTER OPERATION`, monitor);
@@ -139,7 +131,7 @@ function handleKeyDown(e) {
         isOperated = false;
     }
     if(e.key === 'Enter' || e.key === '=') {
-        display.value = (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        display.value = (!monitor.currOperator && !monitor.prevOperator) ? monitor.currOperand : (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
         isOperated = true;
     }
