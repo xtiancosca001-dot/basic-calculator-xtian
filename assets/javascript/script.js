@@ -39,7 +39,7 @@ function operate(operator, num1, num2) {
 const display = document.querySelector('input#display');
 const clear = document.querySelector('#clear');
 const controls = document.querySelector('.controls');
-let monitor = {prevOperand:undefined, currOperand:undefined, prevOperator:undefined, currOperator:undefined};
+let monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:''};
 display.value = '0';
 let operatorIsPressed = false;
 let isOperated = false;
@@ -47,7 +47,7 @@ console.log(monitor);
 function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
         if(isOperated) {
-            monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+            monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:''};
         }
         if(display.value === '0' || operatorIsPressed || isOperated) {
             display.value = monitor.currOperand = e.target.textContent;
@@ -75,7 +75,11 @@ function handleButtonPress(e) {
 
     if(e.target.textContent==='=') {
         console.log(`EQUAL IS PRESSED`, monitor);
-        if(monitor.currOperator === '/' && monitor.currOperand === '0') {
+        if(!monitor.currOperator && !monitor.prevOperator) {
+            console.log('no operators yet', monitor.currOperand)
+            display.value = monitor.currOperand;
+        }
+        else if(monitor.currOperator === '/' && monitor.currOperand === '0') {
             display.value = 'Cannot Divide By Zero!';
         } else {
             display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
@@ -85,7 +89,7 @@ function handleButtonPress(e) {
         console.log(`AFTER OPERATION`, monitor);
     }
     if(e.target.textContent==='C') {
-        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+        monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:''};
         display.value = '0';
         isOperated = false;
     }
@@ -110,7 +114,7 @@ function handleButtonPress(e) {
 function handleKeyDown(e) {
     if(NUMBERS.includes(e.key)) {
         if(isOperated) {
-            monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+            monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:''};
         }
         if(display.value === '0' || operatorIsPressed || isOperated) {
             display.value = monitor.currOperand = e.key;
@@ -140,7 +144,7 @@ function handleKeyDown(e) {
         isOperated = true;
     }
     if(e.key==='c') {
-        monitor = {prevOperand:'', currOperand:'', prevOperator:'', currOperator:''};
+        monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:''};
         display.value = '0';
         isOperated = false;
     }
