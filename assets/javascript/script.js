@@ -89,10 +89,10 @@ function handleButtonPress(e) {
         display.value = '0';
         isOperated = false;
     }
-    if(e.target.textContent==='←') {
+    if(e.target.textContent==='←' && !isOperated) {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
     }
-    if(e.target.textContent==='+/-' && display.value !== '0') {
+    if(e.target.textContent==='+/-' && display.value !== '0' && !isOperated) {
         if(!display.value.includes('-')) {
             display.value = '-' + display.value;
             monitor.currOperand = display.value;
@@ -101,7 +101,7 @@ function handleButtonPress(e) {
             monitor.currOperand = display.value;
         }
     }
-    if(e.target.textContent==='.' && !display.value.includes('.')) {
+    if(e.target.textContent==='.' && !display.value.includes('.') && !isOperated) {
         display.value += '.';
         monitor.currOperand = display.value;
     }
@@ -144,10 +144,10 @@ function handleKeyDown(e) {
         display.value = '0';
         isOperated = false;
     }
-    if(e.key==='Backspace') {
+    if(e.key==='Backspace' && !isOperated) {
         display.value = (display.value.length > 1) ? display.value.slice(0,-1) : '0';
     }
-    if(e.key==='n' && display.value !== '0') {
+    if(e.key==='n' && display.value !== '0' && !isOperated) {
         if(!display.value.includes('-')) {
             display.value = '-' + display.value;
             monitor.currOperand = display.value;
@@ -156,7 +156,7 @@ function handleKeyDown(e) {
             monitor.currOperand = display.value;
         }
     }
-    if(e.key==='.' && !display.value.includes('.')) {
+    if(e.key==='.' && !display.value.includes('.') && !isOperated) {
         display.value += '.';
         monitor.currOperand = display.value;
     }
