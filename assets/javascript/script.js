@@ -46,7 +46,7 @@ let isOperated = false;
 console.log(monitor);
 function handleButtonPress(e) {
     if(NUMBERS.includes(e.target.textContent)) {
-        if(display.value === '0' || operatorIsPressed) {
+        if(display.value === '0' || operatorIsPressed || isOperated) {
             display.value = monitor.currOperand = e.target.textContent;
             operatorIsPressed = false;
         } else if(!operatorIsPressed) {
