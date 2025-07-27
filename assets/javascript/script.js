@@ -73,7 +73,11 @@ function handleButtonPress(e) {
 
     if(e.target.textContent==='=') {
         console.log(`EQUAL IS PRESSED`, monitor);
-        display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        if(monitor.currOperator === '/' && monitor.currOperand === '0') {
+            display.value = 'Cannot Divide By Zero!';
+        } else {
+            display.value = operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
+        }
         monitor.prevOperand = display.value;
         isOperated = true;
         console.log(`AFTER OPERATION`, monitor);
