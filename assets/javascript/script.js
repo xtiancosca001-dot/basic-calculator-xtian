@@ -38,7 +38,7 @@ let monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:'
 display.value = '0';
 let operatorIsPressed = false;
 let isOperated = false;
-console.log(monitor);
+
 function handleButtonPress(e) {
     if(e.target.textContent === '𖹭') {
         display.value = 'I Love Math <3';
@@ -55,7 +55,6 @@ function handleButtonPress(e) {
             display.value += e.target.textContent;
             monitor.currOperand += e.target.textContent;
         }   
-        console.log(`NUMBER IS PRESSED`, monitor);
     }
     if(OPERATORS.includes(e.target.textContent)) {
         if(isOperated) {
@@ -72,11 +71,9 @@ function handleButtonPress(e) {
     }
 
     if(e.target.textContent==='=') {
-        console.log(`EQUAL IS PRESSED`, monitor);
         display.value = (!monitor.currOperator && !monitor.prevOperator) ? monitor.currOperand : (monitor.currOperator==='/' && monitor.currOperand==='0') ? 'Cannot Divide By Zero!' : operate(monitor.prevOperator, parseFloat(monitor.prevOperand), parseFloat(monitor.currOperand));
         monitor.prevOperand = display.value;
         isOperated = true;
-        console.log(`AFTER OPERATION`, monitor);
     }
     if(e.target.textContent==='C') {
         monitor = {prevOperand:'0', currOperand:'0', prevOperator:'', currOperator:''};
