@@ -2,6 +2,10 @@
 const NUMBERS = "1234567890";
 const OPERATORS = "+-*/";
 
+function roundUp(num, length) {
+    return Number(Number(num.toPrecision(length)).toFixed(length));
+}
+
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -21,13 +25,13 @@ function divide(num1, num2) {
 function operate(operator, num1, num2) {
     switch(operator) {
         case '+':
-            return add(num1, num2);
+            return roundUp(add(num1, num2),20);
         case '-':
-            return subtract(num1, num2);
+            return roundUp(subtract(num1, num2),20);
         case '*':
-            return multiply(num1, num2);
+            return roundUp(multiply(num1, num2),20);
         case '/':
-            return divide(num1, num2);
+            return roundUp(divide(num1, num2),20);
     }
 }
 
