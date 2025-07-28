@@ -35,6 +35,9 @@ DOM Manipulation, Control Statements, Arrays, and Objects.
    - Backspace
    - Negate the value
 3. But, the user can perform a new operation after evaluation.
+4. Repeating Operations are also supported if the user presses the = button
+   several times. But the basis of accumulation is the last operand and the 
+   last operator entered.
 
 ## Credits
 - Background owned by rawpixel.com [rawpixel.com](https://www.freepik.com/free-vector/mathematical-geometric-background-vector-gradient-blue-education-remix_16311889.htm#fromView=search&page=1&position=1&uuid=9853d36d-11ee-460d-85a9-de5697fa41e9&query=%40rawpixel-com+math)
