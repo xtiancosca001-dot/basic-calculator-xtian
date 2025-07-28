@@ -40,7 +40,7 @@ let operatorIsPressed = false;
 let isOperated = false;
 
 function handleButtonPress(e) {
-    if(e.target.textContent === '𖹭') {
+    if(e.target.textContent === '♡') {
         display.value = 'I Love Math <3';
         isOperated = true;
     }
