@@ -14,7 +14,7 @@ DOM Manipulation, Control Statements, Arrays, and Objects.
 
 ## Keyboard Functions
 
-|  Functions  |  Key  |
+|  Function  |  Key  |
 |---|---|
 | Numbers | `0...9` |
 | Add | `+` |
